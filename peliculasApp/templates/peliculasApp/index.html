@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Agregar Pelicula{% endblock %}
+{% block content %}
+<div class="container mt-5">
+   <!-- Encabezado con logo -->
+   <div class="alert alert-dark display-5 text-center">
+      <img src="{% static 'image/logo.jpg' %}" width="400px" alt="">
+      Agregar Pelicula
+   </div>
+   <!-- Formulario -->
+   <form action="" method="post">
+      <table class="table">
+         {{ form.as_table }}
+         {% csrf_token %}
+         <tr>
+            <td colspan="2">
+               <input type="submit" value="Guardar" class="btn btn-dark">
+            </td>
+         </tr>
+      </table>
+   </form>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Peliculas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+   <!-- Encabezado con logo -->
+   <div class="alert alert-dark display-5 text-center">
+      <img src="{% static 'image/logo.jpg' %}" width="400px" alt="">
+      Listado de Peliculas
+   </div>
+
+   <!-- Si hay empleados -->
+   {% if peliculas %}
+   <table class="table">
+      <thead>
+         <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Año</th>
+            <th>Género</th>
+            <th>Director</th>
+            <th>Opciones</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for pel in peliculas %}
+         <tr>
+            <td scope="row">{{ pel.id }}</td>
+            <td>{{ pel.nombre }}</td>
+            <td>{{ pel.año }}</td>
+            <td>{{ pel.genero }}</td>
+            <td>{{ pel.director }}</td>
+            <td>
+               <!-- Botón editar -->
+               <a href="{% url 'peliculas:editar' pel.id %}" class="btn btn-success btn-sm">
+                  <i class="bi bi-pencil"></i>
+               </a>
+               <!-- Botón eliminar -->
+               <a href="/eliminarPelicula/{{ pel.id }}" class="btn btn-dangerbtn-sm">
+                  <i class="bi bi-trash"></i>
+               </a>
+            </td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+   {% else %}
+   <!-- Si no hay Peliculas -->
+   <div class="alert alert-info">No hay Peliculas</div>
+   {% endif %}
+</div>
+{% endblock %}
